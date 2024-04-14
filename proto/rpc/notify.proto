@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package rpc;
+
+option go_package = "github.com/appstore-notify-sample/pkg/pb/rpc";
+
+service Notify {
+  rpc Notify (NotifyRequest) returns (NotifyResponse) {}
+}
+
+message NotifyRequest {
+  string signedPayload = 1;
+}
+
+message NotifyResponse {}
