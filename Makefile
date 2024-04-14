@@ -14,5 +14,5 @@ buf:
 
 ## イメージをビルド
 .PHONY: build
-image-rebuild:
+build:
 	$(call docker-compose, build $(target))
