@@ -13,10 +13,9 @@ touch -t $(date +%Y%m%d%H%M.%S) /tmp/buf-start-timestamp
 cd proto
 buf lint || exit $?
 
-# api
-call_buf_generate --template buf.gen.api.yaml \
-  --path proto/rpc/api
-
+# rpc
+call_buf_generate --template buf.gen.yaml \
+  --path proto/rpc
 
 cd - > /dev/null
 ##

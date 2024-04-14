@@ -6,8 +6,8 @@ define docker-compose
 	docker compose $1
 endef
 
-## buf generate
-.PHONY: buf-gen
-buf-gen:
+## buf
+.PHONY: buf
+buf:
 	$(call docker-compose, run --rm --entrypoint sh buf ./scripts/buf.sh)
 	goimports -w -local "github.com/appstore-notify-sample" pkg/pb/
