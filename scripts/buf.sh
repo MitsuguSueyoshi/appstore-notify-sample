@@ -14,8 +14,8 @@ cd proto
 buf lint || exit $?
 
 # api
-call_buf_generate --template buf.gen.yaml \
-  --path proto/rpc/api
+call_buf_generate --template buf.gen.yaml
+
 
 cd - > /dev/null
 ##

@@ -6,9 +6,9 @@ define docker-compose
 	docker compose $1
 endef
 
-## bufのコード生成
-.PHONY: buf
-buf:
+## protoのコード生成
+.PHONY: protoc
+protoc:
 	$(call docker-compose, run --rm --entrypoint sh buf ./scripts/buf.sh)
 	goimports -w -local "github.com/appstore-notify-sample" pkg/pb/
 
