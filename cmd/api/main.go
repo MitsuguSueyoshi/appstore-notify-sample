@@ -10,7 +10,7 @@ func main() {
 	os.Exit(run())
 }
 
-func run() (code int) {
+func run() int {
 	api.Run()
 	return 0
 }
