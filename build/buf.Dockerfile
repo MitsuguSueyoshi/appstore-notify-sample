@@ -13,5 +13,3 @@ RUN go install google.golang.org/protobuf/cmd/protoc-gen-go
 RUN go install connectrpc.com/connect/cmd/protoc-gen-connect-go
 
 WORKDIR ${GOPATH}
-
-ENTRYPOINT ["/usr/local/bin/buf"]
