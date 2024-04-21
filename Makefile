@@ -16,3 +16,8 @@ protoc:
 .PHONY: build
 build:
 	$(call docker-compose, build $(target))
+
+## サーバーを起動
+.PHONY: api-run
+api-run:
+	go run cmd/api/main.go
