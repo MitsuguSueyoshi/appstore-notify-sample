@@ -3,7 +3,7 @@ module github.com/appstore-notify-sample
 go 1.22
 
 require (
-	connectrpc.com/connect v1.16.0
+	connectrpc.com/connect v1.16.1
 	github.com/awa/go-iap v1.28.3
 	go.uber.org/dig v1.17.1
 	golang.org/x/net v0.24.0
