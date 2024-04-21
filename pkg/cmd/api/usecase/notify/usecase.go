@@ -3,6 +3,7 @@ package notify
 import (
 	"errors"
 	"fmt"
+	"log"
 
 	"github.com/appstore-notify-sample/pkg/domain/appstore"
 )
@@ -28,10 +29,8 @@ func (u *usecase) Notify(signedPayload string) error {
 	}
 
 	switch notification.NotificationType {
-	case appstore.NotificationTypeRefund:
-		// 返金処理
 	case appstore.NotificationTypeTest:
-		// テスト通知の処理
+		log.Println("parse notification succeeded! test notification received!")
 	default:
 		return errors.New(fmt.Sprintf("unknown notification type: %d", notification.NotificationType))
 	}

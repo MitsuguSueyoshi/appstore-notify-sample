@@ -23,27 +23,12 @@ func (v *verifier) ParseNotification(signedPayloadJWS string) (*appstore.Notific
 	}
 
 	return &appstore.Notification{
-		NotificationType:         toNotificationType(decodedPayload),
-		SignedTransactionInfoJWS: string(decodedPayload.Data.SignedTransactionInfo),
-	}, nil
-}
-
-func (v *verifier) ParseTransactionInfo(signedTransactionInfoJWS string) (*appstore.TransactionInfo, error) {
-	var decodedPayload *iap_appstore.JWSTransactionDecodedPayload
-	if err := v.client.ParseNotificationV2WithClaim(signedTransactionInfoJWS, decodedPayload); err != nil {
-		return nil, err
-	}
-
-	return &appstore.TransactionInfo{
-		PurchaseDateUnixMilli: decodedPayload.PurchaseDate,
-		OriginalTransactionID: decodedPayload.OriginalTransactionId,
+		NotificationType: toNotificationType(decodedPayload),
 	}, nil
 }
 
 func toNotificationType(decodedPayload *iap_appstore.SubscriptionNotificationV2DecodedPayload) appstore.NotificationType {
 	switch decodedPayload.NotificationType {
-	case iap_appstore.NotificationTypeV2Refund:
-		return appstore.NotificationTypeRefund
 	case iap_appstore.NotificationTypeV2Test:
 		return appstore.NotificationTypeTest
 	default:
