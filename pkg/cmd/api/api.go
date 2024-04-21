@@ -26,12 +26,14 @@ func Run() {
 
 	group, egctx := errgroup.WithContext(ctx)
 	group.Go(func() error {
+		log.Println("start server")
 		if err := server.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
 			log.Println(err)
 		}
 		return nil
 	})
 	<-egctx.Done()
+	defer log.Println("shutdown...")
 
 	tctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
