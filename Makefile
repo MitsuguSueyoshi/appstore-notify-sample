@@ -7,8 +7,8 @@ define docker-compose
 endef
 
 ## protoのコード生成
-.PHONY: protoc
-protoc:
+.PHONY: bufgen
+bufgen:
 	$(call docker-compose, run --rm --entrypoint sh buf ./scripts/buf.sh)
 	goimports -w -local "github.com/appstore-notify-sample" pkg/pb/
 
