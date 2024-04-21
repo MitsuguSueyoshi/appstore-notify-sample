@@ -1,7 +1,7 @@
 package appstore
 
 type Verifier interface {
-	ParseNotification(signedPayloadJWS string) (*Notification, error)
+	ParseNotification(signedPayload string) (*Notification, error)
 }
 
 type Notification struct {

@@ -16,9 +16,9 @@ func NewVerifier() appstore.Verifier {
 	}
 }
 
-func (v *verifier) ParseNotification(signedPayloadJWS string) (*appstore.Notification, error) {
+func (v *verifier) ParseNotification(signedPayload string) (*appstore.Notification, error) {
 	var decodedPayload iap_appstore.SubscriptionNotificationV2DecodedPayload
-	if err := v.client.ParseNotificationV2WithClaim(signedPayloadJWS, &decodedPayload); err != nil {
+	if err := v.client.ParseNotificationV2WithClaim(signedPayload, &decodedPayload); err != nil {
 		return nil, err
 	}
 
