@@ -17,8 +17,12 @@ func NewVerifier() appstore.Verifier {
 }
 
 func (v *verifier) ParseNotification(signedPayloadJWS string) (*appstore.Notification, error) {
-	var decodedPayload *iap_appstore.SubscriptionNotificationV2DecodedPayload
-	if err := v.client.ParseNotificationV2WithClaim(signedPayloadJWS, decodedPayload); err != nil {
+	var decodedPayload iap_appstore.SubscriptionNotificationV2DecodedPayload
+	if err := v.client.ParseNotificationV2WithClaim(signedPayloadJWS, &decodedPayload); err != nil {
+		return nil, err
+	}
+
+	if err := decodedPayload.Valid(); err != nil {
 		return nil, err
 	}
 
@@ -27,7 +31,7 @@ func (v *verifier) ParseNotification(signedPayloadJWS string) (*appstore.Notific
 	}, nil
 }
 
-func toNotificationType(decodedPayload *iap_appstore.SubscriptionNotificationV2DecodedPayload) appstore.NotificationType {
+func toNotificationType(decodedPayload iap_appstore.SubscriptionNotificationV2DecodedPayload) appstore.NotificationType {
 	switch decodedPayload.NotificationType {
 	case iap_appstore.NotificationTypeV2Test:
 		return appstore.NotificationTypeTest
