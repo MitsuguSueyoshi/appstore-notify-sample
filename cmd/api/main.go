@@ -1,10 +1,16 @@
 package main
 
 import (
-	"go.uber.org/fx"
+	"os"
+
+	"github.com/appstore-notify-sample/pkg/cmd/api"
 )
 
 func main() {
-	// ここにコードを書く
-	fx.New().Run()
+	os.Exit(run())
+}
+
+func run() (code int) {
+	api.Run()
+	return 0
 }
