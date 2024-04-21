@@ -7,7 +7,7 @@ import (
 	"golang.org/x/net/http2"
 	"golang.org/x/net/http2/h2c"
 
-	"github.com/appstore-notify-sample/pkg/cmd/api/handler/notify"
+	notify_handler "github.com/appstore-notify-sample/pkg/cmd/api/handler/notify"
 	notify_usecase "github.com/appstore-notify-sample/pkg/cmd/api/usecase/notify"
 	"github.com/appstore-notify-sample/pkg/infra/appstore"
 	"github.com/appstore-notify-sample/pkg/pb/api/apiconnect"
@@ -25,7 +25,7 @@ func NewServer() (*http.Server, error) {
 		return nil, err
 	}
 	// handler
-	if err := c.Provide(notify.NewHandler); err != nil {
+	if err := c.Provide(notify_handler.NewHandler); err != nil {
 		return nil, err
 	}
 
